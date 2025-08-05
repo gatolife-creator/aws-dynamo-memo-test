@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AWS Database Test - メモアプリ
 
-## Getting Started
+AWSのDynamoDBを使った最小構成のメモアプリです。
 
-First, run the development server:
+## 機能
+
+- メモの作成、表示、編集、削除
+- AWS DynamoDB を使用したデータ永続化
+- レスポンシブデザイン
+
+## セットアップ
+
+### 1. 依存関係のインストール
+
+```bash
+npm install
+```
+
+### 2. AWS設定
+
+`.env.local`ファイルを編集し、AWS の認証情報を設定してください：
+
+```env
+AWS_REGION=ap-northeast-1
+AWS_ACCESS_KEY_ID=your_access_key_id
+AWS_SECRET_ACCESS_KEY=your_secret_access_key
+DYNAMODB_TABLE_NAME=notes
+```
+
+### 3. DynamoDBテーブルの作成
+
+```bash
+npm run create-table
+```
+
+### 4. 開発サーバーの起動
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+http://localhost:3000 でアプリにアクセスできます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 技術スタック
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **フロントエンド**: Next.js 15, React 19, TypeScript, Tailwind CSS
+- **バックエンド**: Next.js API Routes
+- **データベース**: AWS DynamoDB
+- **AWS SDK**: @aws-sdk/client-dynamodb, @aws-sdk/lib-dynamodb
 
-## Learn More
+## プロジェクト構造
 
-To learn more about Next.js, take a look at the following resources:
+```
+├── app/
+│   ├── api/notes/          # API routes
+│   ├── page.tsx           # メインページ
+│   └── layout.tsx         # レイアウト
+├── components/
+│   └── NotesApp.tsx       # メインコンポーネント
+├── lib/
+│   └── dynamodb.ts        # DynamoDB操作関数
+├── scripts/
+│   └── create-table.ts    # テーブル作成スクリプト
+└── .env.local            # 環境変数
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 注意事項
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 本番環境では適切なAWS IAMロールとセキュリティ設定を行ってください
+- AWS使用料金にご注意ください（DynamoDBは従量課金制です）
