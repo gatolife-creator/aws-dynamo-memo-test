@@ -4,10 +4,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const client = new DynamoDBClient({
-  region: process.env.AWS_REGION || "ap-northeast-1",
+  region: process.env.REGION || "ap-northeast-1",
   credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID || "",
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || "",
+    accessKeyId: process.env.ACCESS_KEY_ID || "",
+    secretAccessKey: process.env.SECRET_ACCESS_KEY || "",
   },
 });
 
@@ -50,8 +50,8 @@ async function createNotesTable() {
 }
 
 // 環境変数が設定されていない場合の警告
-if (!process.env.AWS_ACCESS_KEY_ID || !process.env.AWS_SECRET_ACCESS_KEY) {
-  console.log("Please set AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY in your .env.local file");
+if (!process.env.ACCESS_KEY_ID || !process.env.SECRET_ACCESS_KEY) {
+  console.log("Please set ACCESS_KEY_ID and SECRET_ACCESS_KEY in your .env.local file");
   process.exit(1);
 }
 

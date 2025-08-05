@@ -21,9 +21,9 @@ npm install
 `.env.local`ファイルを編集し、AWS の認証情報を設定してください：
 
 ```env
-AWS_REGION=ap-northeast-1
-AWS_ACCESS_KEY_ID=your_access_key_id
-AWS_SECRET_ACCESS_KEY=your_secret_access_key
+REGION=ap-northeast-1
+ACCESS_KEY_ID=your_access_key_id
+SECRET_ACCESS_KEY=your_secret_access_key
 DYNAMODB_TABLE_NAME=notes
 ```
 
